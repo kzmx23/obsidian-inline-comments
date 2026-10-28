@@ -1,0 +1,11 @@
+{
+  "name": "obsidian-inline-comments",
+  "owner": { "name": "kzmx23" },
+  "plugins": [
+    {
+      "name": "obsidian-comments-wake",
+      "source": "./claude-code-mod",
+      "description": "Wakes an idle Claude Code session when a new Agent Comments comment appears in a Markdown file the session wrote; the session replies in the same thread."
+    }
+  ]
+}

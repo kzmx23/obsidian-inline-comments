@@ -26,6 +26,35 @@
   <img src="docs/demo-en.gif" width="912" alt="Select text → add comment → @ a session → the session replies in the note">
 </p>
 
+> **This fork** adds [`claude-code-mod/`](claude-code-mod/): a Claude Code mod that wakes the session which wrote a note as soon as you comment on it — on Windows, macOS and Linux, with no hook, no mailbox and no `@`. The plugin itself is unchanged; install it from the community directory as usual.
+
+## Fork: reply from the session that wrote the note
+
+The plugin's own delivery (`@` → mailbox → `UserPromptSubmit` / `Stop` / `SessionStart` hooks) reaches a session only when that session has an event of its own. A session that sits idle waiting for you never sees the letter until you type in its terminal. On Windows the hook also needs `bash`, session discovery needs `ps`, and *Answer with a new session* needs macOS.
+
+The mod closes that gap from the Claude Code side:
+
+1. Every `.md` the session writes with **Write** or **Edit** goes on a watch list (the last 50).
+2. Every 3 seconds the mod reads those files and parses the plugin's comments (`{==passage==}{>>author|date|type: text<<}`).
+3. A new entry from anyone but `Claude` starts a turn in the idle session (`$.prompt.submit`), carrying the passage, the comment and the reply rules.
+4. The session appends `{>>Claude|YYYY-MM-DD|reply: …<<}` (or a `suggest:` entry) to the thread. The plugin redraws the panel, and the reply shows up with an unread dot.
+
+So the loop is: Claude writes a note → you read it in Obsidian → you select a passage and comment → Claude answers in the panel. You never leave the note.
+
+### Install
+
+1. In Obsidian, install **Agent Comments** from the community directory and set **Author name** in its settings. Do not press **Install hook**: the mod does not need it.
+2. In a Claude Code terminal session, run:
+
+   ```
+   /plugin install obsidian-comments-wake --marketplace kzmx23/obsidian-inline-comments
+   ```
+
+   From a shell: `claude plugin install obsidian-comments-wake --marketplace kzmx23/obsidian-inline-comments`.
+3. Start a new Claude Code session, ask it to write a note in your vault, and comment on that note in Obsidian.
+
+Details, troubleshooting and limits are in [`claude-code-mod/README.md`](claude-code-mod/README.md). The prompt the mod sends to the session is in Russian; edit `buildPrompt` in `claude-code-mod/hooks/comments.ts` to change it.
+
 ## What it does
 
 **Highlight → comment.** Select text, right-click *Add inline comment*. A card appears in the right sidebar, level with the passage, and follows it as you scroll. The note itself only gets a soft highlight and a small counter.

@@ -1,0 +1,6 @@
+{
+  "name": "obsidian-comments-wake",
+  "version": "0.1.0",
+  "description": "Будит сессию, когда в .md, который она писала в vault Obsidian, появился новый комментарий Agent Comments ({==…==}{>>…<<}).",
+  "types": "./types/index.d.ts"
+}
