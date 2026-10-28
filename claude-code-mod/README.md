@@ -2,7 +2,7 @@
 
 The mod wakes an idle Claude Code session when a new comment appears in a Markdown file that the session wrote. The session replies in the same comment thread, and the reply shows up in the Agent Comments panel in Obsidian.
 
-**Needs:** Obsidian 1.8+ with the Agent Comments plugin, Claude Code 2.1.312+. Works on Windows, macOS and Linux.
+**Needs:** Obsidian 1.8+ with the Agent Comments plugin, a Claude Code build with mods support. Tested on Windows with Claude Code 2.1.312; the mod uses only the Claude Code mods API, so nothing in it is OS-specific.
 
 ## Install
 

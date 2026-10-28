@@ -26,7 +26,7 @@
   <img src="docs/demo-en.gif" width="912" alt="Select text → add comment → @ a session → the session replies in the note">
 </p>
 
-> **This fork** adds [`claude-code-mod/`](claude-code-mod/): a Claude Code mod that wakes the session which wrote a note as soon as you comment on it — on Windows, macOS and Linux, with no hook, no mailbox and no `@`. The plugin itself is unchanged; install it from the community directory as usual.
+> **This fork** adds [`claude-code-mod/`](claude-code-mod/): a Claude Code mod that wakes the session which wrote a note as soon as you comment on it — no hook, no mailbox, no `@`, and it works on Windows (tested with Claude Code 2.1.312). The plugin itself is unchanged; install it from the community directory as usual.
 
 ## Fork: reply from the session that wrote the note
 
